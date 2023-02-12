@@ -45,7 +45,7 @@ public class MicrophoneFeed : MonoBehaviour
             {
                 source.loop = false;
 
-                Microphone.End(device);
+                //Microphone.End(device);
                 source.clip = prevClip;
                 source.Play();
             }
