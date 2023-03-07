@@ -130,7 +130,7 @@ public class MicInput : MonoBehaviour
         loudnessText.text = MicLoudnessinDecibels + " Dbs";
 
 
-        if(MicLoudnessinDecibels > -30)
+        if(MicLoudnessinDecibels > -40)
         {
             Instantiate(scannerSphere, spawnLocation);
         }

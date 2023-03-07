@@ -19,8 +19,8 @@ MonoBehaviour:
     serializedVersion: 2
     x: -512
     y: -225
-    width: 1482
-    height: 2884
+    width: 1483
+    height: 2871
 --- !u!114 &114350483966674976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -43,62 +43,37 @@ MonoBehaviour:
   - {fileID: 8926484042661614887}
   - {fileID: 8926484042661614901}
   - {fileID: 8926484042661614925}
+  - {fileID: 8926484042661615013}
+  - {fileID: 8926484042661615015}
   m_UIPosition: {x: 0, y: 0}
   m_UICollapsed: 1
   m_UISuperCollapsed: 0
   m_UIInfos: {fileID: 114340500867371532}
   m_ParameterInfo:
-  - name: New Transform
-    path: 
+  - name: Color over time
+    path: Color over time
     tooltip: 
-    sheetType: 
-    realType: Transform
+    sheetType: m_Gradient
+    realType: Gradient
     defaultValue:
       m_Type:
-        m_SerializableType: 
-      m_SerializableObject: 
-    min: -Infinity
-    max: Infinity
-    enumValues: []
-    descendantCount: 3
-  - name: position
-    path: New Transform_position
-    tooltip: Sets the transform position.
-    sheetType: m_Vector3f
-    realType: Vector3
-    defaultValue:
-      m_Type:
-        m_SerializableType: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
+        m_SerializableType: UnityEngine.Gradient, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"x":0.0,"y":0.0,"z":0.0}'
+      m_SerializableObject: '{"colorKeys":[{"color":{"r":0.0,"g":0.015896469354629518,"b":0.7238115668296814,"a":1.0},"time":0.13530175387859345},{"color":{"r":0.8773584961891174,"g":0.1498464196920395,"b":0.020692413672804834,"a":1.0},"time":0.20000000298023225},{"color":{"r":0.08095097541809082,"g":0.0,"b":3.4395627975463869,"a":1.0},"time":0.3176470696926117},{"color":{"r":3.640613317489624,"g":2.718001127243042,"b":0.08193399012088776,"a":1.0},"time":0.364705890417099},{"color":{"r":16.33290672302246,"g":2.118133544921875,"b":0.3852100372314453,"a":1.0},"time":0.40294498205184939},{"color":{"r":3.4349539279937746,"g":0.0,"b":1.1240445375442505,"a":1.0},"time":0.46471351385116579},{"color":{"r":0.0,"g":20.982112884521486,"b":20.778770446777345,"a":1.0},"time":0.5499961972236633},{"color":{"r":0.7075471878051758,"g":0.1021076962351799,"b":0.0,"a":1.0},"time":1.0}],"alphaKeys":[{"alpha":0.0,"time":0.0117647061124444},{"alpha":1.0,"time":0.08529793471097946},{"alpha":1.0,"time":0.7588311433792114},{"alpha":0.0,"time":0.9882352948188782}],"gradientMode":0}'
     min: -Infinity
     max: Infinity
     enumValues: []
     descendantCount: 0
-  - name: angles
-    path: New Transform_angles
-    tooltip: Sets the euler angles of the transform.
-    sheetType: m_Vector3f
-    realType: Vector3
+  - name: Intensity
+    path: Intensity
+    tooltip: 
+    sheetType: m_Float
+    realType: Single
     defaultValue:
       m_Type:
-        m_SerializableType: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
-          Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"x":0.0,"y":0.0,"z":0.0}'
-    min: -Infinity
-    max: Infinity
-    enumValues: []
-    descendantCount: 0
-  - name: scale
-    path: New Transform_scale
-    tooltip: Sets the scale of the transform along each axis.
-    sheetType: m_Vector3f
-    realType: Vector3
-    defaultValue:
-      m_Type:
-        m_SerializableType: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
-          Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"x":1.0,"y":1.0,"z":1.0}'
+        m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+          PublicKeyToken=b77a5c561934e089
+      m_SerializableObject: 18
     min: -Infinity
     max: Infinity
     enumValues: []
@@ -1280,7 +1255,7 @@ MonoBehaviour:
   - {fileID: 8926484042661614721}
   - {fileID: 8926484042661614758}
   - {fileID: 8926484042661615000}
-  m_UIPosition: {x: 366, y: 1168}
+  m_UIPosition: {x: 392, y: 1123}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots: []
@@ -1805,7 +1780,8 @@ MonoBehaviour:
       m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
   m_Direction: 0
-  m_LinkedSlots: []
+  m_LinkedSlots:
+  - {fileID: 8926484042661615016}
 --- !u!114 &8926484042661614736
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2105,14 +2081,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 081ffb0090424ba4cb05370a42ead6b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UIIgnoredErrors: []
-  m_Parent: {fileID: 0}
-  m_Children: []
-  m_UIPosition: {x: 0, y: 0}
-  m_UICollapsed: 1
-  m_UISuperCollapsed: 0
-  opaqueRenderQueue: 0
-  transparentRenderQueue: 1
 --- !u!114 &8926484042661614747
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2402,7 +2370,8 @@ MonoBehaviour:
       m_SerializableType: UnityEngine.Gradient, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
   m_Direction: 0
-  m_LinkedSlots: []
+  m_LinkedSlots:
+  - {fileID: 8926484042661615014}
 --- !u!114 &8926484042661614756
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3171,13 +3140,13 @@ MonoBehaviour:
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
   m_UIPosition: {x: 0, y: 0}
-  m_UICollapsed: 0
+  m_UICollapsed: 1
   m_UISuperCollapsed: 0
   m_InputSlots: []
   m_OutputSlots:
   - {fileID: 8926484042661614888}
   m_ExposedName: New Transform
-  m_Exposed: 1
+  m_Exposed: 0
   m_Order: 0
   m_Category: 
   m_Min:
@@ -5424,3 +5393,163 @@ MonoBehaviour:
         Culture=neutral, PublicKeyToken=null
   m_Direction: 0
   m_LinkedSlots: []
+--- !u!114 &8926484042661615013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 330e0fca1717dde4aaa144f48232aa64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UIIgnoredErrors: []
+  m_Parent: {fileID: 114350483966674976}
+  m_Children: []
+  m_UIPosition: {x: 0, y: 0}
+  m_UICollapsed: 0
+  m_UISuperCollapsed: 0
+  m_InputSlots: []
+  m_OutputSlots:
+  - {fileID: 8926484042661615014}
+  m_ExposedName: Color over time
+  m_Exposed: 1
+  m_Order: 1
+  m_Category: 
+  m_Min:
+    m_Type:
+      m_SerializableType: 
+    m_SerializableObject: 
+  m_Max:
+    m_Type:
+      m_SerializableType: 
+    m_SerializableObject: 
+  m_IsOutput: 0
+  m_EnumValues: []
+  m_ValueFilter: 0
+  m_Tooltip: 
+  m_Nodes:
+  - m_Id: 0
+    linkedSlots:
+    - outputSlot: {fileID: 8926484042661615014}
+      inputSlot: {fileID: 8926484042661614755}
+    position: {x: 6, y: 2563.2}
+    expandedSlots: []
+    expanded: 0
+--- !u!114 &8926484042661615014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76f778ff57c4e8145b9681fe3268d8e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UIIgnoredErrors: []
+  m_Parent: {fileID: 0}
+  m_Children: []
+  m_UIPosition: {x: 0, y: 0}
+  m_UICollapsed: 1
+  m_UISuperCollapsed: 0
+  m_MasterSlot: {fileID: 8926484042661615014}
+  m_MasterData:
+    m_Owner: {fileID: 8926484042661615013}
+    m_Value:
+      m_Type:
+        m_SerializableType: UnityEngine.Gradient, UnityEngine.CoreModule, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+      m_SerializableObject: '{"colorKeys":[{"color":{"r":0.0,"g":0.015896469354629518,"b":0.7238115668296814,"a":1.0},"time":0.13530175387859345},{"color":{"r":0.8773584961891174,"g":0.1498464196920395,"b":0.020692413672804834,"a":1.0},"time":0.20000000298023225},{"color":{"r":0.08095097541809082,"g":0.0,"b":3.4395627975463869,"a":1.0},"time":0.3176470696926117},{"color":{"r":3.640613317489624,"g":2.718001127243042,"b":0.08193399012088776,"a":1.0},"time":0.364705890417099},{"color":{"r":16.33290672302246,"g":2.118133544921875,"b":0.3852100372314453,"a":1.0},"time":0.40294498205184939},{"color":{"r":3.4349539279937746,"g":0.0,"b":1.1240445375442505,"a":1.0},"time":0.46471351385116579},{"color":{"r":0.0,"g":20.982112884521486,"b":20.778770446777345,"a":1.0},"time":0.5499961972236633},{"color":{"r":0.7075471878051758,"g":0.1021076962351799,"b":0.0,"a":1.0},"time":1.0}],"alphaKeys":[{"alpha":0.0,"time":0.0117647061124444},{"alpha":1.0,"time":0.08529793471097946},{"alpha":1.0,"time":0.7588311433792114},{"alpha":0.0,"time":0.9882352948188782}],"gradientMode":0}'
+    m_Space: 2147483647
+  m_Property:
+    name: o
+    m_serializedType:
+      m_SerializableType: UnityEngine.Gradient, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+  m_Direction: 1
+  m_LinkedSlots:
+  - {fileID: 8926484042661614755}
+--- !u!114 &8926484042661615015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 330e0fca1717dde4aaa144f48232aa64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UIIgnoredErrors: []
+  m_Parent: {fileID: 114350483966674976}
+  m_Children: []
+  m_UIPosition: {x: 0, y: 0}
+  m_UICollapsed: 0
+  m_UISuperCollapsed: 0
+  m_InputSlots: []
+  m_OutputSlots:
+  - {fileID: 8926484042661615016}
+  m_ExposedName: Intensity
+  m_Exposed: 1
+  m_Order: 2
+  m_Category: 
+  m_Min:
+    m_Type:
+      m_SerializableType: 
+    m_SerializableObject: 
+  m_Max:
+    m_Type:
+      m_SerializableType: 
+    m_SerializableObject: 
+  m_IsOutput: 0
+  m_EnumValues: []
+  m_ValueFilter: 0
+  m_Tooltip: 
+  m_Nodes:
+  - m_Id: 0
+    linkedSlots:
+    - outputSlot: {fileID: 8926484042661615016}
+      inputSlot: {fileID: 8926484042661614735}
+    position: {x: 68.23282, y: 1350.5211}
+    expandedSlots: []
+    expanded: 0
+--- !u!114 &8926484042661615016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f780aa281814f9842a7c076d436932e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UIIgnoredErrors: []
+  m_Parent: {fileID: 0}
+  m_Children: []
+  m_UIPosition: {x: 0, y: 0}
+  m_UICollapsed: 1
+  m_UISuperCollapsed: 0
+  m_MasterSlot: {fileID: 8926484042661615016}
+  m_MasterData:
+    m_Owner: {fileID: 8926484042661615015}
+    m_Value:
+      m_Type:
+        m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+          PublicKeyToken=b77a5c561934e089
+      m_SerializableObject: 18
+    m_Space: 2147483647
+  m_Property:
+    name: o
+    m_serializedType:
+      m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+  m_Direction: 1
+  m_LinkedSlots:
+  - {fileID: 8926484042661614735}

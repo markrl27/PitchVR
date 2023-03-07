@@ -96,6 +96,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62a2074df82de46389d60eb4f382740f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 12.16
+  speed: 10
   delay_destroy_time: 4.72
   resetTime: 3.03
