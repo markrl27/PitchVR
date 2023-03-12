@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1114544824847134685}
   - component: {fileID: 2923785951951166231}
   - component: {fileID: 4562931974834374503}
+  - component: {fileID: 4082075695049908872}
   m_Layer: 0
   m_Name: Inverted_Sphere
   m_TagString: Untagged
@@ -28,8 +29,8 @@ Transform:
   m_GameObject: {fileID: 3716494047380781762}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.1842, y: 0.03, z: -0.070001}
-  m_LocalScale: {x: 1.0631574, y: 1.0631574, z: 1.0631574}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -93,9 +94,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 3716494047380781762}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62a2074df82de46389d60eb4f382740f, type: 3}
+  m_Script: {fileID: 11500000, guid: 561fce6e5843e4db2b1b5b4f7e525939, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  resetTime: 5
   speed: 10
-  delay_destroy_time: 4.72
-  resetTime: 3.03
+  materialOriginal: {fileID: 2100000, guid: fcf7e19a5b4f2cf4787d63ba8d406cd8, type: 2}
+  materialNew: {fileID: 2100000, guid: baac549a77e29a940bfec55421ae2cf1, type: 2}
+--- !u!135 &4082075695049908872
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3716494047380781762}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.9
+  m_Center: {x: 0.00000011920929, y: 0, z: -0.00000017881393}
