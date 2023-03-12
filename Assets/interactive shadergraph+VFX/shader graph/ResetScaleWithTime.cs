@@ -11,6 +11,9 @@ public class ResetScaleWithTime : MonoBehaviour
     private Vector3 originalScale;
 
 
+    public Material materialOriginal;
+    public Material materialNew;
+
     void Start()
     {
         originalScale = transform.localScale;
@@ -29,6 +32,30 @@ public class ResetScaleWithTime : MonoBehaviour
         {
             transform.localScale = originalScale;
             timer = resetTime;
+
+            Destroy(gameObject, 0.1f);
         }
+    }
+
+
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Environment"))
+        {
+            //materialOriginal = other.GetComponent<MeshRenderer>().material;
+            other.GetComponent<MeshRenderer>().material = materialNew;
+        }
+        
+    }
+
+
+    public void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Environment"))
+        {
+            other.GetComponent<MeshRenderer>().material = materialOriginal;
+        }
+
     }
 }
