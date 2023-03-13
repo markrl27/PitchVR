@@ -36,7 +36,7 @@ public class PitchDetectDemo : MonoBehaviour
     public TMP_Text checkerText;
 
     AudioSource source;
-
+    public bool isDetecting = false;
 
     // Use this for initialization
     void Start()
@@ -48,43 +48,46 @@ public class PitchDetectDemo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
 
 
 
-        float freq = PitchDetectorGetFreq(0), deviation = 0.0f;
-        frequency = freq.ToString() + " Hz";
-
-        if (freq > 0.0f)
+        if (isDetecting)
         {
-            float noteval = 57.0f + 12.0f * Mathf.Log10(freq / 440.0f) / Mathf.Log10(2.0f);
-            float f = Mathf.Floor(noteval + 0.5f);
-            deviation = Mathf.Floor((noteval - f) * 100.0f);
-            int noteIndex = (int)f % 12;
-            int octave = (int)Mathf.Floor((noteval + 0.5f) / 12.0f);
-            note = noteNames[noteIndex];
+            float freq = PitchDetectorGetFreq(0), deviation = 0.0f;
+            frequency = freq.ToString() + " Hz";
+
+            if (freq > 0.0f)
+            {
+                float noteval = 57.0f + 12.0f * Mathf.Log10(freq / 440.0f) / Mathf.Log10(2.0f);
+                float f = Mathf.Floor(noteval + 0.5f);
+                deviation = Mathf.Floor((noteval - f) * 100.0f);
+                int noteIndex = (int)f % 12;
+                int octave = (int)Mathf.Floor((noteval + 0.5f) / 12.0f);
+                note = noteNames[noteIndex];
 
 
-            if (note == note1)
-                note1Correct = true;
-            if (note == note2)
-                note2Correct = true;
-            if (note == note3)
-                note3Correct = true;
-            if (note == note4)
-                note4Correct = true;
+                if (note == note1)
+                    note1Correct = true;
+                if (note == note2)
+                    note2Correct = true;
+                if (note == note3)
+                    note3Correct = true;
+                if (note == note4)
+                    note4Correct = true;
 
-            note += " " + octave;
+                note += " " + octave;
+
+            }
+            else
+            {
+                note = "unknown";
+                pitchText.text = "";
+            }
+
+            if (pitchText != null)
+                pitchText.text = "Detected frequency: " + frequency + "\nDetected note: " + note + " (deviation: " + deviation + " cents)";
 
         }
-        else
-        {
-            note = "unknown";
-            pitchText.text = "";
-        }
-
-        if (pitchText != null)
-            pitchText.text = "Detected frequency: " + frequency + "\nDetected note: " + note + " (deviation: " + deviation + " cents)";
 
         if (source.isPlaying == false)
         {
