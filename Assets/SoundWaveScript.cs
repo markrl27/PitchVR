@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class SoundWaveScript : MonoBehaviour
 { 
@@ -54,6 +55,11 @@ public class SoundWaveScript : MonoBehaviour
             environmentScript = other.GetComponent<EnvironmentScript>();
             environmentScript.PlayParticles();
         }
+
+        if(other.GetComponent<VisualEffect>() != null)
+        {
+            other.GetComponent<VisualEffect>().SetFloat("Rate", 5000);
+        }
         
     }
 
@@ -65,6 +71,11 @@ public class SoundWaveScript : MonoBehaviour
             other.GetComponent<MeshRenderer>().material = materialOriginal;
             environmentScript = other.GetComponent<EnvironmentScript>();
             environmentScript.StopParticles();
+        }
+
+        if (other.GetComponent<VisualEffect>() != null)
+        {
+            other.GetComponent<VisualEffect>().SetFloat("Rate", 0);
         }
 
     }
