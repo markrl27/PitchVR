@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
-public class ResetScaleWithTime : MonoBehaviour
+public class SoundWaveScript : MonoBehaviour
 { 
     public float resetTime = 5.0f;
     public float speed = 1.0f;
@@ -13,11 +14,15 @@ public class ResetScaleWithTime : MonoBehaviour
 
     public Material materialOriginal;
     public Material materialNew;
+    private EnvironmentScript environmentScript;
+    public MicInput micInput;
 
     void Start()
     {
         originalScale = transform.localScale;
         timer = resetTime;
+
+        micInput = FindObjectOfType<MicInput>();
     }
 
     void Update()
@@ -33,6 +38,8 @@ public class ResetScaleWithTime : MonoBehaviour
             transform.localScale = originalScale;
             timer = resetTime;
 
+            micInput.ResetSoundwaves();
+
             Destroy(gameObject, 0.1f);
         }
     }
@@ -41,10 +48,17 @@ public class ResetScaleWithTime : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Environment"))
+        if (other.GetComponent<EnvironmentScript>() != null)
         {
             //materialOriginal = other.GetComponent<MeshRenderer>().material;
             other.GetComponent<MeshRenderer>().material = materialNew;
+            environmentScript = other.GetComponent<EnvironmentScript>();
+            environmentScript.PlayParticles();
+        }
+
+        if(other.GetComponent<VisualEffect>() != null)
+        {
+            other.GetComponent<VisualEffect>().SetFloat("Rate", 5000);
         }
         
     }
@@ -52,10 +66,29 @@ public class ResetScaleWithTime : MonoBehaviour
 
     public void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Environment"))
+        if (other.GetComponent<EnvironmentScript>() != null)
         {
             other.GetComponent<MeshRenderer>().material = materialOriginal;
+            environmentScript = other.GetComponent<EnvironmentScript>();
+            environmentScript.StopParticles();
         }
 
+        if (other.GetComponent<VisualEffect>() != null)
+        {
+            other.GetComponent<VisualEffect>().SetFloat("Rate", 0);
+        }
+
+    }
+
+
+
+    public void SetSpeed(float _speed)
+    {
+        speed = _speed;
+    }
+
+    public void SetTimer(float _timer)
+    {
+        resetTime = _timer;
     }
 }
