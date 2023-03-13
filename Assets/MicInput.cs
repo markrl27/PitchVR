@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Unity.Mathematics;
 
 public class MicInput : MonoBehaviour
 {
@@ -19,6 +20,10 @@ public class MicInput : MonoBehaviour
     public TMP_Text loudnessText;
     public GameObject scannerSphere;
     public Transform spawnLocation;
+    public SoundWaveScript soundWaveScript;
+    private bool activeSoundwave = false;
+    float newSpeed, newTimer;
+    float maxVolume = -200;
 
     //mic initialization
     public void InitMic()
@@ -130,9 +135,24 @@ public class MicInput : MonoBehaviour
         loudnessText.text = MicLoudnessinDecibels + " Dbs";
 
 
-        if(MicLoudnessinDecibels > -40)
+        if(MicLoudnessinDecibels > -50 && maxVolume < MicLoudnessinDecibels && !activeSoundwave)
         {
-            Instantiate(scannerSphere, spawnLocation);
+
+            maxVolume = MicLoudnessinDecibels;
+
+        }
+
+        if(MicLoudnessinDecibels < -100 && maxVolume > -50 && !activeSoundwave)
+        {
+            GameObject spawnedSphere = Instantiate(scannerSphere, spawnLocation);
+            //soundWaveScript = spawnedSphere.GetComponent<SoundWaveScript>();
+            //newSpeed = math.remap(maxVolume, -50f, -10f, 2.0f, 0.2f);
+            //soundWaveScript.SetSpeed(newSpeed);
+            //newTimer = math.remap(MicLoudnessinDecibels, -60f, -10f, 2.0f, 6f);
+            //soundWaveScript.SetTimer(newTimer);
+
+            activeSoundwave = true;
+            maxVolume = -200;
         }
 
     }
@@ -179,4 +199,11 @@ public class MicInput : MonoBehaviour
 
         }
     }
+
+    public void ResetSoundwaves()
+    {
+        activeSoundwave = false;
+    }
+
+
 }
