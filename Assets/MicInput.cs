@@ -68,7 +68,7 @@ public class MicInput : MonoBehaviour
     }
 
     //get data from microphone into audioclip
-    float MicrophoneLevelMaxDecibels()
+    public float MicrophoneLevelMaxDecibels()
     {
 
         float db = 20 * Mathf.Log10(Mathf.Abs(MicLoudness));

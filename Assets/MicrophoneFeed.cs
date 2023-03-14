@@ -60,4 +60,10 @@ public class MicrophoneFeed : MonoBehaviour
         if (GUILayout.Button(useMicrophone ? "Disable microphone" : "Enable microphone"))
             useMicrophone = !useMicrophone;
     }
+
+    public void ToggleRecord()
+    {
+        useMicrophone = !useMicrophone;
+    }
+
 }

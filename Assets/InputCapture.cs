@@ -6,29 +6,37 @@ using UnityEngine.InputSystem;
 public class InputCapture : MonoBehaviour
 {
 
-    [SerializeField] InputActionReference leftControllerGrip;
+    MicrophoneFeed microphoneFeed;
+    //bool isRecording = false;
 
-    private void Awake()
+
+
+
+    [Header("Select Action")]
+    [SerializeField] InputActionReference rightControllerGrip, leftControllerGrip;
+    void Awake()
     {
+        rightControllerGrip.action.performed += onRightGripPressed;
         leftControllerGrip.action.performed += onLeftGripPressed;
     }
 
-    // Start is called before the first frame update
-    void Start()
+
+    private void Start()
     {
-        
+        microphoneFeed = FindObjectOfType<MicrophoneFeed>();
     }
 
-    // Update is called once per frame
-    void Update()
+    void onRightGripPressed(InputAction.CallbackContext obj)
     {
-        
+        Debug.Log("Right Grip Pressed");
+
+        microphoneFeed.ToggleRecord();
+
     }
-
-
     void onLeftGripPressed(InputAction.CallbackContext obj)
     {
         Debug.Log("Left Grip Pressed");
     }
 
 }
+
