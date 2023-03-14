@@ -37,6 +37,7 @@ public class PitchDetectDemo : MonoBehaviour
 
     AudioSource source;
     public bool isDetecting = false;
+    public EchoScript echoScript;
 
     // Use this for initialization
     void Start()
@@ -51,7 +52,7 @@ public class PitchDetectDemo : MonoBehaviour
 
 
 
-        if (isDetecting)
+        if (isDetecting && EchoScript.isInTrigger)
         {
             float freq = PitchDetectorGetFreq(0), deviation = 0.0f;
             frequency = freq.ToString() + " Hz";
@@ -100,6 +101,7 @@ public class PitchDetectDemo : MonoBehaviour
         if (note1Correct == true && note2Correct == true && note3Correct == true && note4Correct == true)
         {
             checkerText.text = "Correct!";
+            echoScript.CompleteArea();
         }
 
 

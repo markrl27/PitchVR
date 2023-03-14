@@ -9,6 +9,7 @@ public class EnvironmentScript : MonoBehaviour
 
     private VisualEffect visualEffect;
     float loudness, newXscale;
+    public bool lvlComplete = false;
 
 
     ParticleSystem system;

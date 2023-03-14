@@ -50,10 +50,16 @@ public class SoundWaveScript : MonoBehaviour
     {
         if (other.GetComponent<EnvironmentScript>() != null)
         {
-            //materialOriginal = other.GetComponent<MeshRenderer>().material;
-            other.GetComponent<MeshRenderer>().material = materialNew;
             environmentScript = other.GetComponent<EnvironmentScript>();
-            environmentScript.PlayParticles();
+            if (environmentScript.lvlComplete == false)
+            {
+                //materialOriginal = other.GetComponent<MeshRenderer>().material;
+                other.GetComponent<MeshRenderer>().material = materialNew;
+
+                environmentScript.PlayParticles();
+            }
+
+
         }
 
         if(other.GetComponent<VisualEffect>() != null)
@@ -68,9 +74,15 @@ public class SoundWaveScript : MonoBehaviour
     {
         if (other.GetComponent<EnvironmentScript>() != null)
         {
-            other.GetComponent<MeshRenderer>().material = materialOriginal;
             environmentScript = other.GetComponent<EnvironmentScript>();
-            environmentScript.StopParticles();
+            if(environmentScript.lvlComplete == false)
+            {
+                other.GetComponent<MeshRenderer>().material = materialOriginal;
+
+                environmentScript.StopParticles();
+            }
+
+
         }
 
         if (other.GetComponent<VisualEffect>() != null)

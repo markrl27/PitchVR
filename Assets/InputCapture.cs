@@ -7,6 +7,7 @@ public class InputCapture : MonoBehaviour
 {
 
     MicrophoneFeed microphoneFeed;
+
     //bool isRecording = false;
 
 
@@ -37,6 +38,8 @@ public class InputCapture : MonoBehaviour
     {
         Debug.Log("Left Grip Pressed");
     }
+
+
 
 }
 

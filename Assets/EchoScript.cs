@@ -9,6 +9,11 @@ public class EchoScript : MonoBehaviour
     private float timer = 5f;
     public bool timerActive = true;
     PitchDetectDemo pitchDetector;
+    MicrophoneFeed microphoneFeed;
+    public GameObject affectedEnvironment;
+    public Material newMaterial;
+    AudioClip clip;
+    public static bool isInTrigger = false;
 
 
 
@@ -17,6 +22,8 @@ public class EchoScript : MonoBehaviour
     {
         source = GetComponent<AudioSource>();
         pitchDetector = FindObjectOfType<PitchDetectDemo>();
+        microphoneFeed = FindObjectOfType<MicrophoneFeed>();
+        clip = source.clip;
         
     }
 
@@ -50,7 +57,10 @@ public class EchoScript : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            pitchDetector.isDetecting = true;
+            //pitchDetector.inEchoZone = true;
+            isInTrigger = true;
+            microphoneFeed.echoScript = this;
+            pitchDetector.echoScript = this;
         }
 
 
@@ -60,9 +70,35 @@ public class EchoScript : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            pitchDetector.isDetecting = false;
+            //pitchDetector.inEchoZone = false;
+            isInTrigger = false;
+            microphoneFeed.echoScript = null;
         }
 
 
+    }
+
+    public void PauseClip()
+    {
+        timerActive = false;
+        source.Stop();
+        source.clip = null;
+    }
+
+    public void PlayClip()
+    {
+        timer = 1;
+        timerActive = true;
+        source.clip = clip;
+    }
+
+
+
+    public void CompleteArea()
+    {
+        foreach (Transform child in affectedEnvironment.transform)
+        {
+            child.GetComponent<MeshRenderer>().material = newMaterial;
+        }
     }
 }

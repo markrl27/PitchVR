@@ -11,6 +11,15 @@ public class MicrophoneFeed : MonoBehaviour
     private string device;
     private bool prevUseMicrophone = false;
     private AudioClip prevClip = null;
+    PitchDetectDemo pitchDetector;
+    public EchoScript echoScript;
+    public MicInput micInput;
+
+    private void Start()
+    {
+        pitchDetector = FindObjectOfType<PitchDetectDemo>();
+    }
+
 
     void Update()
     {
@@ -31,9 +40,12 @@ public class MicrophoneFeed : MonoBehaviour
                 source = GetComponent<AudioSource>();
                 prevClip = source.clip;
                 source.Stop();
+
+
                 source.clip = Microphone.Start(device, true, 1, AudioSettings.outputSampleRate);
                 Debug.Log(Microphone.IsRecording(device));
                 source.loop = true;
+                source.volume = 5;
                 source.Play();
 
                 int dspBufferSize, dspNumBuffers;
@@ -64,6 +76,21 @@ public class MicrophoneFeed : MonoBehaviour
     public void ToggleRecord()
     {
         useMicrophone = !useMicrophone;
+        pitchDetector.isDetecting = !pitchDetector.isDetecting;
+        micInput.InitMic();
+        if (EchoScript.isInTrigger)
+        {
+            if (useMicrophone)
+            {
+                echoScript.PauseClip();
+            }
+            else
+            {
+                echoScript.PlayClip();
+            }
+
+        }
+
     }
 
 }
