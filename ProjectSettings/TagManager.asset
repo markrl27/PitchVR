@@ -5,11 +5,14 @@ TagManager:
   serializedVersion: 2
   tags:
   - Environment
+  - Echo1
+  - Echo2
+  - Echo3
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - PostProcessing
   - Water
   - UI
   - 

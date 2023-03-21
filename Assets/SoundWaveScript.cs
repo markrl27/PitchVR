@@ -56,9 +56,9 @@ public class SoundWaveScript : MonoBehaviour
                 //materialOriginal = other.GetComponent<MeshRenderer>().material;
                 other.GetComponent<MeshRenderer>().material = materialNew;
 
-                environmentScript.PlayParticles();
+                
             }
-
+            environmentScript.PlayParticles();
 
         }
 
@@ -79,9 +79,9 @@ public class SoundWaveScript : MonoBehaviour
             {
                 other.GetComponent<MeshRenderer>().material = materialOriginal;
 
-                environmentScript.StopParticles();
+                
             }
-
+            environmentScript.StopParticles();
 
         }
 

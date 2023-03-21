@@ -6,7 +6,7 @@ public class EchoScript : MonoBehaviour
 {
 
     public AudioSource source;
-    private float timer = 5f;
+    private float timer = 3f;
     public bool timerActive = true;
     PitchDetectDemo pitchDetector;
     MicrophoneFeed microphoneFeed;
@@ -14,6 +14,8 @@ public class EchoScript : MonoBehaviour
     public Material newMaterial;
     AudioClip clip;
     public static bool isInTrigger = false;
+    PostProcessing postProcessing;
+    EnvironmentScript environmentScript;
 
 
 
@@ -23,6 +25,7 @@ public class EchoScript : MonoBehaviour
         source = GetComponent<AudioSource>();
         pitchDetector = FindObjectOfType<PitchDetectDemo>();
         microphoneFeed = FindObjectOfType<MicrophoneFeed>();
+        postProcessing = FindObjectOfType<PostProcessing>();
         clip = source.clip;
         
     }
@@ -39,7 +42,7 @@ public class EchoScript : MonoBehaviour
         if(timer <= 0)
         {
             source.Play();
-            timer = 5f;
+            timer = 3f;
             timerActive = false;
 
         }
@@ -57,10 +60,29 @@ public class EchoScript : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            //pitchDetector.inEchoZone = true;
+            pitchDetector.ResetPitch();
             isInTrigger = true;
             microphoneFeed.echoScript = this;
             pitchDetector.echoScript = this;
+            if (MicrophoneFeed.useMicrophone)
+            {
+                PauseClip();
+            }
+
+
+            if (gameObject.CompareTag("Echo1"))
+            {
+                pitchDetector.SetEcho1();
+            }
+            if (gameObject.CompareTag("Echo2"))
+            {
+                pitchDetector.SetEcho2();
+            }
+            if (gameObject.CompareTag("Echo3"))
+            {
+                pitchDetector.SetEcho3();
+            }
+
         }
 
 
@@ -70,9 +92,7 @@ public class EchoScript : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            //pitchDetector.inEchoZone = false;
-            isInTrigger = false;
-            microphoneFeed.echoScript = null;
+            ExitTrigger();
         }
 
 
@@ -83,6 +103,7 @@ public class EchoScript : MonoBehaviour
         timerActive = false;
         source.Stop();
         source.clip = null;
+        pitchDetector.note = "";
     }
 
     public void PlayClip()
@@ -99,6 +120,31 @@ public class EchoScript : MonoBehaviour
         foreach (Transform child in affectedEnvironment.transform)
         {
             child.GetComponent<MeshRenderer>().material = newMaterial;
+            environmentScript = child.GetComponent<EnvironmentScript>();
+            environmentScript.lvlComplete = true;
         }
+        PauseClip();
+        ExitTrigger();
+
+        Destroy(this);
+        Destroy(gameObject);
     }
+
+
+    public void ExitTrigger()
+    {
+        //pitchDetector.inEchoZone = false;
+        isInTrigger = false;
+        microphoneFeed.echoScript = null;
+        if (MicrophoneFeed.useMicrophone)
+        {
+            StartCoroutine(microphoneFeed.ToggleRecord());
+            postProcessing.TogglePostProcessing();
+            PlayClip();
+        }
+
+        pitchDetector.SetNoEcho();
+        pitchDetector.ResetPitch();
+    }
+
 }

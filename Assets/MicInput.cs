@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using Unity.Mathematics;
 
-public class MicInput : MonoBehaviour
+public class MicInput : MonoBehaviour     // script adapted from: https://forum.unity.com/threads/check-current-microphone-input-volume.133501/ 
 {
     #region SingleTon
 
@@ -142,7 +142,7 @@ public class MicInput : MonoBehaviour
 
         }
 
-        if(MicLoudnessinDecibels < -100 && maxVolume > -50 && !activeSoundwave)
+        if(MicLoudnessinDecibels < -100 && maxVolume > -50 && !activeSoundwave && !MicrophoneFeed.useMicrophone)
         {
             GameObject spawnedSphere = Instantiate(scannerSphere, spawnLocation);
             //soundWaveScript = spawnedSphere.GetComponent<SoundWaveScript>();

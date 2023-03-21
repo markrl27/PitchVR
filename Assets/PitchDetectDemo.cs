@@ -24,10 +24,7 @@ public class PitchDetectDemo : MonoBehaviour
     public InfoText pitchText;
 
 
-    string note1 = "F";
-    string note2 = "E";
-    string note3 = "F";
-    string note4 = "G";
+    string note1, note2, note3, note4;
 
     bool note1Correct = false;
     bool note2Correct = false;
@@ -39,82 +36,178 @@ public class PitchDetectDemo : MonoBehaviour
     public bool isDetecting = false;
     public EchoScript echoScript;
 
+
+    enum EchoNotes
+    {
+        NoEcho,
+        Echo1,
+        Echo2,
+        Echo3
+    }
+    EchoNotes currentEcho;
+
+
     // Use this for initialization
     void Start()
     {
         checkerText.text = "";
         source = GetComponentInParent<AudioSource>();
+
+        currentEcho = EchoNotes.NoEcho;
     }
 
     // Update is called once per frame
     void Update()
     {
 
-
-
-        if (isDetecting && EchoScript.isInTrigger)
+        switch (currentEcho)
         {
-            float freq = PitchDetectorGetFreq(0), deviation = 0.0f;
-            frequency = freq.ToString() + " Hz";
-
-            if (freq > 0.0f)
-            {
-                float noteval = 57.0f + 12.0f * Mathf.Log10(freq / 440.0f) / Mathf.Log10(2.0f);
-                float f = Mathf.Floor(noteval + 0.5f);
-                deviation = Mathf.Floor((noteval - f) * 100.0f);
-                int noteIndex = (int)f % 12;
-                int octave = (int)Mathf.Floor((noteval + 0.5f) / 12.0f);
-                note = noteNames[noteIndex];
-
-
-                if (note == note1)
-                    note1Correct = true;
-                if (note == note2)
-                    note2Correct = true;
-                if (note == note3)
-                    note3Correct = true;
-                if (note == note4)
-                    note4Correct = true;
-
-                note += " " + octave;
-
-            }
-            else
-            {
-                note = "unknown";
-                pitchText.text = "";
-            }
-
-            if (pitchText != null)
-                pitchText.text = "Detected frequency: " + frequency + "\nDetected note: " + note + " (deviation: " + deviation + " cents)";
-
+            case EchoNotes.NoEcho:
+                note1 = "";
+                note2 = "";
+                note3 = "";
+                note4 = "";
+                break;
+            case EchoNotes.Echo1:
+                note1 = "C";
+                note2 = "C";
+                note3 = "C";
+                note4 = "C";
+                break;
+            case EchoNotes.Echo2:
+                note1 = "D";
+                note2 = "D";
+                note3 = "D";
+                note4 = "D";
+                break;
+            case EchoNotes.Echo3:
+                note1 = "E";
+                note2 = "E";
+                note3 = "E";
+                note4 = "E";
+                break;
         }
 
+        
+
+        float freq = PitchDetectorGetFreq(0), deviation = 0.0f;
+        frequency = freq.ToString() + " Hz";
+
+        //Debug.Log(isDetecting);
+        //Debug.Log(EchoScript.isInTrigger);
+
+        if (freq > 0.0f && MicrophoneFeed.clipLoudness > 0.02 && isDetecting && EchoScript.isInTrigger)
+        {
+            float noteval = 57.0f + 12.0f * Mathf.Log10(freq / 440.0f) / Mathf.Log10(2.0f);
+            float f = Mathf.Floor(noteval + 0.5f);
+            deviation = Mathf.Floor((noteval - f) * 100.0f);
+            int noteIndex = (int)f % 12;
+            int octave = (int)Mathf.Floor((noteval + 0.5f) / 12.0f);
+            note = noteNames[noteIndex];
+
+                
+        }
+        else
+        {
+            freq = 0;
+            frequency = "0";
+            note = "unknown";
+               
+        }
+
+        if (pitchText != null)
+            pitchText.text = "Detected frequency: " + frequency + "\nDetected note: " + note + " (deviation: " + deviation + " cents)";
+
+       
+            if (note == note1)
+                note1Correct = true;
+            if (note == note2)
+                note2Correct = true;
+            if (note == note3)
+                note3Correct = true;
+            if (note == note4)
+                note4Correct = true;
+        
+        //Debug.Log(note1);
+        
+
+        if (note1Correct && note2Correct  && note3Correct  && note4Correct )
+        {
+            //checkerText.text = "Correct!";
+            echoScript.CompleteArea();
+            isDetecting = false;
+            //ResetPitch();
+            note1Correct = false;
+            note2Correct = false;
+            note3Correct = false;
+            note4Correct = false;
+        }
+
+
+            
         if (source.isPlaying == false)
         {
             pitchText.text = "";
             note = "";
-
         }
 
-
-        if (note1Correct == true && note2Correct == true && note3Correct == true && note4Correct == true)
-        {
-            checkerText.text = "Correct!";
-            echoScript.CompleteArea();
-        }
-
+        note = "";
 
     }
 
     public void ResetPitch()
     {
+        note = "";
         note1Correct = false;
         note2Correct = false;
         note3Correct = false;
         note4Correct = false;
-        checkerText.text = "";
+        //checkerText.text = "";
+        
     }
+
+
+
+    public void SetNoEcho()
+    {
+        currentEcho = EchoNotes.NoEcho;
+        note = "";
+    }
+
+    public void SetEcho1()
+    {
+        currentEcho = EchoNotes.Echo1;
+        note = "";
+    }
+
+    public void SetEcho2()
+    {
+        currentEcho = EchoNotes.Echo2;
+        note = "";
+    }
+
+    public void SetEcho3()
+    {
+        currentEcho = EchoNotes.Echo3;
+        note = "";
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     Vector3 Plot(float[] data, int num, float x0, float y0, float w, float h, Color col, float thr)
     {
