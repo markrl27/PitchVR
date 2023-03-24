@@ -8,6 +8,7 @@ TagManager:
   - Echo1
   - Echo2
   - Echo3
+  - TestEcho
   layers:
   - Default
   - TransparentFX

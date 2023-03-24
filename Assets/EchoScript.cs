@@ -82,6 +82,10 @@ public class EchoScript : MonoBehaviour
             {
                 pitchDetector.SetEcho3();
             }
+            if (gameObject.CompareTag("TestEcho"))
+            {
+                pitchDetector.SetTestEcho();
+            }
 
         }
 

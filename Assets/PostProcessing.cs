@@ -11,6 +11,7 @@ public class PostProcessing : MonoBehaviour
     Volume volume;
     ColorAdjustments colorAdjustments;
     public Image recordingImage;
+    public Image recordingImage1;
     
     bool recordingPPOn = false;
 
@@ -21,6 +22,7 @@ public class PostProcessing : MonoBehaviour
         volume.profile.TryGet<ColorAdjustments>(out colorAdjustments);
 
         recordingImage.enabled = false;
+        recordingImage1.enabled = false;
 
     }
 
@@ -36,11 +38,13 @@ public class PostProcessing : MonoBehaviour
         {
             colorAdjustments.saturation.value = -70;
             recordingImage.enabled = true;
+            recordingImage1.enabled = true;
         }
         else
         {
             colorAdjustments.saturation.value = 30;
             recordingImage.enabled = false;
+            recordingImage1.enabled = false;
         }
         recordingPPOn = !recordingPPOn;
     }

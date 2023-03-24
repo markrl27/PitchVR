@@ -42,7 +42,8 @@ public class PitchDetectDemo : MonoBehaviour
         NoEcho,
         Echo1,
         Echo2,
-        Echo3
+        Echo3,
+        TestEcho
     }
     EchoNotes currentEcho;
 
@@ -86,6 +87,12 @@ public class PitchDetectDemo : MonoBehaviour
                 note3 = "E";
                 note4 = "E";
                 break;
+            case EchoNotes.TestEcho:
+                note1 = "C";
+                note2 = "D";
+                note3 = "E";
+                note4 = "E";
+                break;
         }
 
         
@@ -121,9 +128,9 @@ public class PitchDetectDemo : MonoBehaviour
        
             if (note == note1)
                 note1Correct = true;
-            if (note == note2)
+            if (note == note2 && note1Correct == true)
                 note2Correct = true;
-            if (note == note3)
+            if (note == note3 && note2Correct == true)
                 note3Correct = true;
             if (note == note4)
                 note4Correct = true;
@@ -192,7 +199,10 @@ public class PitchDetectDemo : MonoBehaviour
         note = "";
     }
 
-
+    public void SetTestEcho()
+    {
+        currentEcho = EchoNotes.TestEcho;
+    }
 
 
 
