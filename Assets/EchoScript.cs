@@ -17,7 +17,7 @@ public class EchoScript : MonoBehaviour
     PostProcessing postProcessing;
     EnvironmentScript environmentScript;
 
-
+    ParticleSystem system;
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +27,8 @@ public class EchoScript : MonoBehaviour
         microphoneFeed = FindObjectOfType<MicrophoneFeed>();
         postProcessing = FindObjectOfType<PostProcessing>();
         clip = source.clip;
-        
+
+        system = GetComponent<ParticleSystem>();
     }
 
     // Update is called once per frame
@@ -42,6 +43,8 @@ public class EchoScript : MonoBehaviour
         if(timer <= 0)
         {
             source.Play();
+            if (system != null)
+                system.Play();
             timer = 3f;
             timerActive = false;
 
@@ -50,7 +53,10 @@ public class EchoScript : MonoBehaviour
         if(source.isPlaying == false && !timerActive)
         {
             timerActive = true;
+            if(system != null)
+                system.Stop();
         }
+
 
 
     }
