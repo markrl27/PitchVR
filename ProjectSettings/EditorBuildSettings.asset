@@ -5,12 +5,15 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/touble-no sound detection.unity
     guid: 2e160f780ba3a4b36a3cb686bbbade38
+  - enabled: 1
+    path: Assets/realjustgroup1group2.unity
+    guid: c5fb9af9965e24a58b96924c8a9f3eb4
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 4e661462b8709704bb6e631332588493, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 176bd9c4ec253eb4a9b0affab7769689, type: 2}
