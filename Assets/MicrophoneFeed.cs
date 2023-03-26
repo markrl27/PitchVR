@@ -5,12 +5,29 @@ using UnityEngine.Audio;
 [RequireComponent(typeof(AudioSource))]
 public class MicrophoneFeed : MonoBehaviour
 {
-    public bool useMicrophone = false;
+    public static bool useMicrophone = false;
 
     private AudioSource source;
     private string device;
     private bool prevUseMicrophone = false;
-    private AudioClip prevClip = null;
+    //private AudioClip prevClip = null;
+    PitchDetectDemo pitchDetector;
+    public EchoScript echoScript;
+    public MicInput micInput;
+
+
+    public static float clipLoudness;
+    private float[] clipSampleData = new float[1024];
+    public float updateStep = 0.1f;
+    public int sampleDataLength = 1024;
+    private float currentUpdateTime = 0f;
+
+    private void Start()
+    {
+        pitchDetector = FindObjectOfType<PitchDetectDemo>();
+        source = GetComponent<AudioSource>();
+    }
+
 
     void Update()
     {
@@ -28,12 +45,15 @@ public class MicrophoneFeed : MonoBehaviour
                     break;
                 }
 
-                source = GetComponent<AudioSource>();
-                prevClip = source.clip;
-                source.Stop();
+                
+                //prevClip = source.clip;
+                //source.Stop();
+
+
                 source.clip = Microphone.Start(device, true, 1, AudioSettings.outputSampleRate);
                 Debug.Log(Microphone.IsRecording(device));
                 source.loop = true;
+                source.volume = 5;
                 source.Play();
 
                 int dspBufferSize, dspNumBuffers;
@@ -43,15 +63,34 @@ public class MicrophoneFeed : MonoBehaviour
             }
             else
             {
+                source.Stop();
                 source.loop = false;
 
                 //Microphone.End(device);
-                source.clip = prevClip;
-                source.Play();
+                //source.clip = prevClip;
+                //source.Play();
             }
             Debug.Log(Microphone.IsRecording(device));
 
         }
+
+
+        currentUpdateTime += Time.deltaTime;
+        if (currentUpdateTime >= updateStep)
+        {
+            currentUpdateTime = 0f;
+
+            if(useMicrophone)
+            source.clip.GetData(clipSampleData, source.timeSamples); //I read 1024 samples, w$$anonymous$$ch is about 80 ms on a 44khz stereo clip, beginning at the current sample position of the clip.
+            
+            clipLoudness = 0f;
+            foreach (var sample in clipSampleData)
+            {
+                clipLoudness += Mathf.Abs(sample);
+            }
+            clipLoudness /= sampleDataLength; //clipLoudness is what you are looking for
+        }
+        //Debug.Log(clipLoudness.ToString());
 
     }
 
@@ -61,9 +100,31 @@ public class MicrophoneFeed : MonoBehaviour
             useMicrophone = !useMicrophone;
     }
 
-    public void ToggleRecord()
+    public IEnumerator ToggleRecord()
     {
+        if (useMicrophone)
+            micInput.InitMic();
+
         useMicrophone = !useMicrophone;
+        
+
+        if (EchoScript.isInTrigger)
+        {
+            if (useMicrophone)
+            {
+                echoScript.PauseClip();
+            }
+            else
+            {
+                echoScript.PlayClip();
+            }
+
+        }
+        pitchDetector.note = "";
+        yield return new WaitForSeconds(1f);
+        pitchDetector.note = "";
+        pitchDetector.isDetecting = !pitchDetector.isDetecting;
+
     }
 
 }

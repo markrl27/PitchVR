@@ -9,6 +9,7 @@ public class EnvironmentScript : MonoBehaviour
 
     private VisualEffect visualEffect;
     float loudness, newXscale;
+    public bool lvlComplete = false;
 
 
     ParticleSystem system;
@@ -16,7 +17,11 @@ public class EnvironmentScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        system = GetComponent<ParticleSystem>();
+        if (GetComponent<ParticleSystem>() != null)
+        {
+            system = GetComponent<ParticleSystem>();
+        }
+        
 
         if(GetComponent<VisualEffect>() != null)
         {
@@ -28,7 +33,7 @@ public class EnvironmentScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GetComponent<VisualEffect>() != null)
+        if (visualEffect != null)
         {
             loudness = MicInput.MicLoudnessinDecibels;
             newXscale = math.remap( -200.0f, -30.0f, 0.1f, 2.0f, loudness);
@@ -43,12 +48,20 @@ public class EnvironmentScript : MonoBehaviour
 
     public void PlayParticles()
     {
-        system.Play();
+        if (system != null)
+        {
+            system.Play();
+        }
+
     }
 
     public void StopParticles()
     {
-        system.Stop();
+        if (system != null)
+        {
+            system.Stop();
+        }
+
     }
 
 }
