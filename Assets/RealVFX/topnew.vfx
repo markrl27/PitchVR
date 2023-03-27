@@ -1386,7 +1386,7 @@ MonoBehaviour:
   m_InputSlots: []
   m_OutputSlots: []
   m_Disabled: 0
-  mode: 1
+  mode: 0
   axes: 4
 --- !u!114 &8926484042661614673
 MonoBehaviour:
@@ -2780,7 +2780,7 @@ MonoBehaviour:
   m_InputSlots: []
   m_OutputSlots: []
   m_Disabled: 0
-  mode: 1
+  mode: 0
   axes: 4
 --- !u!114 &8926484042661615093
 MonoBehaviour:
@@ -4103,7 +4103,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEditor.VFX.TArcSphere, Unity.VisualEffectGraph.Editor,
           Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"sphere":{"transform":{"position":{"x":-23.700000762939454,"y":11.739999771118164,"z":-22.399999618530275},"angles":{"x":0.0,"y":0.0,"z":0.0},"scale":{"x":2.0,"y":2.0,"z":2.0}},"radius":5.380000114440918},"arc":6.28000020980835}'
+      m_SerializableObject: '{"sphere":{"transform":{"position":{"x":-23.700000762939454,"y":11.739999771118164,"z":-22.399999618530275},"angles":{"x":0.0,"y":0.0,"z":0.0},"scale":{"x":1.5,"y":1.5,"z":1.5}},"radius":5.380000114440918},"arc":6.28000020980835}'
     m_Space: 0
   m_Property:
     name: arcSphere
