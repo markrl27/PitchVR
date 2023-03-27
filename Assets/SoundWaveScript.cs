@@ -64,7 +64,7 @@ public class SoundWaveScript : MonoBehaviour
 
         if(other.GetComponent<VisualEffect>() != null)
         {
-            other.GetComponent<VisualEffect>().SetFloat("Rate", 5000);
+            //other.GetComponent<VisualEffect>().SetFloat("Rate", 5000);
         }
         
     }
@@ -87,7 +87,7 @@ public class SoundWaveScript : MonoBehaviour
 
         if (other.GetComponent<VisualEffect>() != null)
         {
-            other.GetComponent<VisualEffect>().SetFloat("Rate", 0);
+            //other.GetComponent<VisualEffect>().SetFloat("Rate", 0);
         }
 
     }

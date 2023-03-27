@@ -64,10 +64,10 @@ public class PitchDetectDemo : MonoBehaviour
         switch (currentEcho)
         {
             case EchoNotes.NoEcho:
-                note1 = "";
-                note2 = "";
-                note3 = "";
-                note4 = "";
+                note1 = ".";
+                note2 = ".";
+                note3 = ".";
+                note4 = ".";
                 break;
             case EchoNotes.Echo1:
                 note1 = "C";
@@ -103,7 +103,7 @@ public class PitchDetectDemo : MonoBehaviour
         //Debug.Log(isDetecting);
         //Debug.Log(EchoScript.isInTrigger);
 
-        if (freq > 0.0f && MicrophoneFeed.clipLoudness > 0.02 && isDetecting && EchoScript.isInTrigger)
+        if (freq > 0.0f && MicrophoneFeed.clipLoudness > 0.01 && isDetecting)//&& EchoScript.isInTrigger
         {
             float noteval = 57.0f + 12.0f * Mathf.Log10(freq / 440.0f) / Mathf.Log10(2.0f);
             float f = Mathf.Floor(noteval + 0.5f);
@@ -112,7 +112,7 @@ public class PitchDetectDemo : MonoBehaviour
             int octave = (int)Mathf.Floor((noteval + 0.5f) / 12.0f);
             note = noteNames[noteIndex];
 
-                
+            StartCoroutine("NoteChecker");
         }
         else
         {
@@ -126,19 +126,36 @@ public class PitchDetectDemo : MonoBehaviour
             pitchText.text = "Detected frequency: " + frequency + "\nDetected note: " + note + " (deviation: " + deviation + " cents)";
 
        
-            if (note == note1)
-                note1Correct = true;
-            if (note == note2 && note1Correct == true)
-                note2Correct = true;
-            if (note == note3 && note2Correct == true)
-                note3Correct = true;
-            if (note == note4)
-                note4Correct = true;
-        
-        //Debug.Log(note1);
-        
+           
 
-        if (note1Correct && note2Correct  && note3Correct  && note4Correct )
+            
+        if (source.isPlaying == false)
+        {
+            pitchText.text = "";
+            note = "";
+        }
+
+        //note = "";
+
+    }
+
+    IEnumerator NoteChecker()
+    {
+        yield return new WaitForSeconds(1);
+
+        if (note == note1)
+            note1Correct = true;
+        if (note == note2 && note1Correct == true)
+            note2Correct = true;
+        if (note == note3 && note2Correct == true)
+            note3Correct = true;
+        if (note == note4)
+            note4Correct = true;
+
+
+        Debug.Log(note);
+
+        if (note1Correct && note2Correct && note3Correct && note4Correct)
         {
             //checkerText.text = "Correct!";
             echoScript.CompleteArea();
@@ -149,18 +166,8 @@ public class PitchDetectDemo : MonoBehaviour
             note3Correct = false;
             note4Correct = false;
         }
-
-
-            
-        if (source.isPlaying == false)
-        {
-            pitchText.text = "";
-            note = "";
-        }
-
-        note = "";
-
     }
+
 
     public void ResetPitch()
     {
