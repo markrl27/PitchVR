@@ -48,7 +48,7 @@ MonoBehaviour:
     x: -534
     y: -887
     width: 1086
-    height: 3709
+    height: 3698
 --- !u!114 &114350483966674976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1386,7 +1386,7 @@ MonoBehaviour:
   m_InputSlots: []
   m_OutputSlots: []
   m_Disabled: 0
-  mode: 6
+  mode: 1
   axes: 4
 --- !u!114 &8926484042661614673
 MonoBehaviour:
@@ -1571,7 +1571,7 @@ MonoBehaviour:
   m_InputSlots:
   - {fileID: 8926484042661614842}
   m_OutputSlots: []
-  m_Disabled: 1
+  m_Disabled: 0
 --- !u!114 &8926484042661614842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2055,7 +2055,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615070}
   - {fileID: 8926484042661615074}
   m_OutputSlots: []
-  m_Disabled: 1
+  m_Disabled: 0
   attribute: position
   Composition: 0
   SampleMode: 6
@@ -2686,7 +2686,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615090}
   - {fileID: 8926484042661615091}
   m_OutputSlots: []
-  m_Disabled: 0
+  m_Disabled: 1
   repeat: 0
   spawnMode: 0
   delayMode: 0
@@ -2780,7 +2780,7 @@ MonoBehaviour:
   m_InputSlots: []
   m_OutputSlots: []
   m_Disabled: 0
-  mode: 0
+  mode: 1
   axes: 4
 --- !u!114 &8926484042661615093
 MonoBehaviour:
@@ -4679,7 +4679,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615242}
   - {fileID: 8926484042661615243}
   m_OutputSlots: []
-  m_Disabled: 0
+  m_Disabled: 1
 --- !u!114 &8926484042661615234
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class EchoScript : MonoBehaviour
 {
@@ -29,6 +30,21 @@ public class EchoScript : MonoBehaviour
         clip = source.clip;
 
         system = GetComponent<ParticleSystem>();
+
+
+        foreach (Transform child in affectedEnvironment.transform)
+        {
+            //child.GetComponent<MeshRenderer>().material = newMaterial;
+            //environmentScript = child.GetComponent<EnvironmentScript>();
+            //environmentScript.lvlComplete = true;
+
+            if (child.GetComponent<VisualEffect>() != null)
+            {
+                child.GetComponent<VisualEffect>().Stop();
+            }
+
+        }
+
     }
 
     // Update is called once per frame
@@ -129,9 +145,15 @@ public class EchoScript : MonoBehaviour
     {
         foreach (Transform child in affectedEnvironment.transform)
         {
-            child.GetComponent<MeshRenderer>().material = newMaterial;
-            environmentScript = child.GetComponent<EnvironmentScript>();
-            environmentScript.lvlComplete = true;
+            //child.GetComponent<MeshRenderer>().material = newMaterial;
+            //environmentScript = child.GetComponent<EnvironmentScript>();
+            //environmentScript.lvlComplete = true;
+
+            if(child.GetComponent<VisualEffect>() != null)
+            {
+                child.GetComponent<VisualEffect>().Play();
+            }
+
         }
         PauseClip();
         ExitTrigger();
