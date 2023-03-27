@@ -225,7 +225,7 @@ public class PitchDetectDemo : MonoBehaviour
 
 
 
-
+    /*
     Vector3 Plot(float[] data, int num, float x0, float y0, float w, float h, Color col, float thr)
     {
         GL.Begin(GL.LINES);
@@ -277,4 +277,6 @@ public class PitchDetectDemo : MonoBehaviour
             mixer.SetFloat("Monitor", monitor);
         }
     }
+
+    */
 }
