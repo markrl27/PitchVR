@@ -278,7 +278,13 @@ VisualEffect:
         m_Overridden: 1
       - m_Value: 0
         m_Name: SpeedRangeY
-        m_Overridden: 0
+        m_Overridden: 1
+      - m_Value: 60000
+        m_Name: Range
+        m_Overridden: 1
+      - m_Value: 0.03
+        m_Name: Drag
+        m_Overridden: 1
     m_Vector2f:
       m_Array: []
     m_Vector3f:
@@ -385,7 +391,7 @@ VisualEffect:
   m_Enabled: 1
   m_Asset: {fileID: 8926484042661614526, guid: 7234a53ae3a384c039f16228e97fe4d5, type: 3}
   m_InitialEventName: OnPlay
-  m_InitialEventNameOverriden: 1
+  m_InitialEventNameOverriden: 0
   m_StartSeed: 0
   m_ResetSeedOnPlay: 1
   m_ResourceVersion: 1
@@ -397,6 +403,12 @@ VisualEffect:
         m_Overridden: 1
       - m_Value: 1
         m_Name: Intensity
+        m_Overridden: 1
+      - m_Value: 200000
+        m_Name: Range
+        m_Overridden: 1
+      - m_Value: 0.025
+        m_Name: Size
         m_Overridden: 1
     m_Vector2f:
       m_Array: []
@@ -7660,13 +7672,19 @@ VisualEffect:
   m_Enabled: 1
   m_Asset: {fileID: 8926484042661614526, guid: 195f004ec0da04af5bd0b7c102c4c365, type: 3}
   m_InitialEventName: OnPlay
-  m_InitialEventNameOverriden: 1
+  m_InitialEventNameOverriden: 0
   m_StartSeed: 0
   m_ResetSeedOnPlay: 0
   m_ResourceVersion: 1
   m_PropertySheet:
     m_Float:
-      m_Array: []
+      m_Array:
+      - m_Value: 0.00006
+        m_Name: Size
+        m_Overridden: 1
+      - m_Value: 120000
+        m_Name: Range
+        m_Overridden: 1
     m_Vector2f:
       m_Array: []
     m_Vector3f:
@@ -8743,7 +8761,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 79.765564
+  field of view: 116.30344
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -8768,14 +8786,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1205183658}
-  m_LocalRotation: {x: -0, y: -0.063890174, z: -0, w: -0.997957}
-  m_LocalPosition: {x: -25.5, y: 3.38, z: -65}
+  m_LocalRotation: {x: -0, y: -0.9992552, z: -0, w: -0.03858946}
+  m_LocalPosition: {x: -25.5, y: 23.1, z: 26.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 15
-  m_LocalEulerAnglesHint: {x: 0, y: 367.326, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 535.577, z: 0}
 --- !u!4 &1297232720 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 87c5c4058eb0e410bb60d5b621961bd4, type: 3}
@@ -11709,6 +11727,34 @@ PrefabInstance:
       propertyPath: m_ResetSeedOnPlay
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4283940357887618194, guid: 34fc0ef2b18c547a3bd3470f0781ee91, type: 3}
+      propertyPath: m_PropertySheet.m_Float.m_Array.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4283940357887618194, guid: 34fc0ef2b18c547a3bd3470f0781ee91, type: 3}
+      propertyPath: m_PropertySheet.m_Float.m_Array.Array.data[0].m_Name
+      value: Range
+      objectReference: {fileID: 0}
+    - target: {fileID: 4283940357887618194, guid: 34fc0ef2b18c547a3bd3470f0781ee91, type: 3}
+      propertyPath: m_PropertySheet.m_Float.m_Array.Array.data[1].m_Name
+      value: Size
+      objectReference: {fileID: 0}
+    - target: {fileID: 4283940357887618194, guid: 34fc0ef2b18c547a3bd3470f0781ee91, type: 3}
+      propertyPath: m_PropertySheet.m_Float.m_Array.Array.data[0].m_Value
+      value: 15000
+      objectReference: {fileID: 0}
+    - target: {fileID: 4283940357887618194, guid: 34fc0ef2b18c547a3bd3470f0781ee91, type: 3}
+      propertyPath: m_PropertySheet.m_Float.m_Array.Array.data[1].m_Value
+      value: 0.00001
+      objectReference: {fileID: 0}
+    - target: {fileID: 4283940357887618194, guid: 34fc0ef2b18c547a3bd3470f0781ee91, type: 3}
+      propertyPath: m_PropertySheet.m_Float.m_Array.Array.data[0].m_Overridden
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4283940357887618194, guid: 34fc0ef2b18c547a3bd3470f0781ee91, type: 3}
+      propertyPath: m_PropertySheet.m_Float.m_Array.Array.data[1].m_Overridden
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4283940357887618196, guid: 34fc0ef2b18c547a3bd3470f0781ee91, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -11805,14 +11851,14 @@ PrefabInstance:
     - target: {fileID: 8149228053493340461, guid: f42b85ce31db7470aa343f079c13b3f6, type: 3}
       propertyPath: m_Asset
       value: 
-      objectReference: {fileID: 8926484042661614526, guid: 13b94529c7d2441fdbdefbdae26da3ff, type: 3}
+      objectReference: {fileID: 8926484042661614526, guid: 560e6ca7292e64115a1d701184b46d57, type: 3}
     - target: {fileID: 8149228053493340461, guid: f42b85ce31db7470aa343f079c13b3f6, type: 3}
       propertyPath: m_ResetSeedOnPlay
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8149228053493340461, guid: f42b85ce31db7470aa343f079c13b3f6, type: 3}
       propertyPath: m_InitialEventNameOverriden
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8149228053493340461, guid: f42b85ce31db7470aa343f079c13b3f6, type: 3}
       propertyPath: m_PropertySheet.m_Float.m_Array.Array.size
