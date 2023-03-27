@@ -19,8 +19,8 @@ MonoBehaviour:
     serializedVersion: 2
     x: 181
     y: -662
-    width: 773
-    height: 2028
+    width: 774
+    height: 2015
 --- !u!114 &114350483966674976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -63,8 +63,8 @@ MonoBehaviour:
     max: Infinity
     enumValues: []
     descendantCount: 0
-  - name: Darg
-    path: Darg
+  - name: ScaleX
+    path: ScaleX
     tooltip: 
     sheetType: m_Float
     realType: Single
@@ -73,12 +73,12 @@ MonoBehaviour:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
       m_SerializableObject: 0.55
-    min: 0
-    max: 0.55
+    min: 0.1
+    max: 2
     enumValues: []
     descendantCount: 0
-  - name: ScaleX
-    path: ScaleX
+  - name: size
+    path: size
     tooltip: 
     sheetType: m_Float
     realType: Single
@@ -3078,7 +3078,7 @@ MonoBehaviour:
   m_InputSlots: []
   m_OutputSlots:
   - {fileID: 8926484042661614698}
-  m_ExposedName: Darg
+  m_ExposedName: ScaleX
   m_Exposed: 1
   m_Order: 1
   m_Category: 
@@ -3086,12 +3086,12 @@ MonoBehaviour:
     m_Type:
       m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
-    m_SerializableObject: 0
+    m_SerializableObject: 0.1
   m_Max:
     m_Type:
       m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
-    m_SerializableObject: 0.55
+    m_SerializableObject: 2
   m_IsOutput: 0
   m_EnumValues: []
   m_ValueFilter: 1
@@ -3160,7 +3160,7 @@ MonoBehaviour:
   m_InputSlots: []
   m_OutputSlots:
   - {fileID: 8926484042661614700}
-  m_ExposedName: ScaleX
+  m_ExposedName: size
   m_Exposed: 1
   m_Order: 2
   m_Category: 

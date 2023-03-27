@@ -221,7 +221,7 @@ public class PitchDetectDemo : MonoBehaviour
 
 
 
-
+    /*
 
 
 
@@ -277,4 +277,6 @@ public class PitchDetectDemo : MonoBehaviour
             mixer.SetFloat("Monitor", monitor);
         }
     }
+
+    */
 }
