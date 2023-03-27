@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class EchoScript : MonoBehaviour
 {
@@ -17,7 +18,7 @@ public class EchoScript : MonoBehaviour
     PostProcessing postProcessing;
     EnvironmentScript environmentScript;
 
-
+    ParticleSystem system;
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +28,23 @@ public class EchoScript : MonoBehaviour
         microphoneFeed = FindObjectOfType<MicrophoneFeed>();
         postProcessing = FindObjectOfType<PostProcessing>();
         clip = source.clip;
-        
+
+        system = GetComponent<ParticleSystem>();
+
+
+        foreach (Transform child in affectedEnvironment.transform)
+        {
+            //child.GetComponent<MeshRenderer>().material = newMaterial;
+            //environmentScript = child.GetComponent<EnvironmentScript>();
+            //environmentScript.lvlComplete = true;
+
+            if (child.GetComponent<VisualEffect>() != null)
+            {
+                child.GetComponent<VisualEffect>().Stop();
+            }
+
+        }
+
     }
 
     // Update is called once per frame
@@ -42,6 +59,8 @@ public class EchoScript : MonoBehaviour
         if(timer <= 0)
         {
             source.Play();
+            if (system != null)
+                system.Play();
             timer = 3f;
             timerActive = false;
 
@@ -50,7 +69,10 @@ public class EchoScript : MonoBehaviour
         if(source.isPlaying == false && !timerActive)
         {
             timerActive = true;
+            if(system != null)
+                system.Stop();
         }
+
 
 
     }
@@ -123,9 +145,15 @@ public class EchoScript : MonoBehaviour
     {
         foreach (Transform child in affectedEnvironment.transform)
         {
-            child.GetComponent<MeshRenderer>().material = newMaterial;
-            environmentScript = child.GetComponent<EnvironmentScript>();
-            environmentScript.lvlComplete = true;
+            //child.GetComponent<MeshRenderer>().material = newMaterial;
+            //environmentScript = child.GetComponent<EnvironmentScript>();
+            //environmentScript.lvlComplete = true;
+
+            if(child.GetComponent<VisualEffect>() != null)
+            {
+                child.GetComponent<VisualEffect>().Play();
+            }
+
         }
         PauseClip();
         ExitTrigger();
