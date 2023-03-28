@@ -5,8 +5,8 @@ using UnityEngine.VFX;
 
 public class SoundWaveScript : MonoBehaviour
 { 
-    public float resetTime = 5.0f;
-    public float speed = 1.0f;
+    public float resetTime = 7.0f;
+    public float speed = 2f;
 
     private float timer;
     private Vector3 originalScale;

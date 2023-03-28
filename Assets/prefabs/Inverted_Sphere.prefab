@@ -98,8 +98,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 561fce6e5843e4db2b1b5b4f7e525939, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resetTime: 5
-  speed: 10
+  resetTime: 7
+  speed: 15
   materialOriginal: {fileID: 2100000, guid: fcf7e19a5b4f2cf4787d63ba8d406cd8, type: 2}
   materialNew: {fileID: 2100000, guid: baac549a77e29a940bfec55421ae2cf1, type: 2}
   micInput: {fileID: 0}
