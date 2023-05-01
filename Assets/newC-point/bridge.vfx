@@ -19,8 +19,8 @@ MonoBehaviour:
     serializedVersion: 2
     x: -265
     y: -470
-    width: 788
-    height: 1948
+    width: 787
+    height: 1941
 --- !u!114 &114350483966674976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -73,7 +73,7 @@ MonoBehaviour:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
       m_SerializableObject: 0
-    min: 0.1
+    min: 0
     max: 2
     enumValues: []
     descendantCount: 0
@@ -2358,7 +2358,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Gradient, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"colorKeys":[{"color":{"r":21.11212158203125,"g":16.601041793823243,"b":8.903400421142579,"a":1.0},"time":0.06176852062344551},{"color":{"r":0.34626275300979617,"g":29.459117889404298,"b":1.6398780345916749,"a":1.0},"time":0.46471351385116579},{"color":{"r":0.3205181360244751,"g":30.60942268371582,"b":1.7012996673583985,"a":1.0},"time":0.7353017330169678},{"color":{"r":1.0,"g":0.2492365837097168,"b":0.08018869161605835,"a":1.0},"time":0.8500038385391235},{"color":{"r":0.3119799494743347,"g":0.0,"b":0.0013795068953186274,"a":1.0},"time":1.0}],"alphaKeys":[{"alpha":0.0,"time":0.0},{"alpha":1.0,"time":0.06764324754476547},{"alpha":1.0,"time":0.7676509022712708},{"alpha":0.0,"time":0.9882352948188782}],"gradientMode":0}'
+      m_SerializableObject: '{"colorKeys":[{"color":{"r":21.11212158203125,"g":16.601041793823243,"b":8.903400421142579,"a":1.0},"time":0.01765468902885914},{"color":{"r":35.87886428833008,"g":37.1039924621582,"b":35.93099594116211,"a":1.0},"time":0.46471351385116579},{"color":{"r":0.3205181360244751,"g":30.60942268371582,"b":1.7012996673583985,"a":1.0},"time":0.6058899760246277},{"color":{"r":0.3137255012989044,"g":2.3372550010681154,"b":4.0,"a":1.0},"time":0.7205920219421387},{"color":{"r":2.760784387588501,"g":0.3137255012989044,"b":4.0,"a":1.0},"time":0.8676432371139526}],"alphaKeys":[{"alpha":0.0,"time":0.0},{"alpha":1.0,"time":0.03529411926865578},{"alpha":1.0,"time":0.9588311314582825},{"alpha":0.0,"time":0.9882352948188782}],"gradientMode":0}'
     m_Space: 2147483647
   m_Property:
     name: Color
@@ -3024,7 +3024,7 @@ MonoBehaviour:
     m_Type:
       m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
-    m_SerializableObject: 0.1
+    m_SerializableObject: 0
   m_Max:
     m_Type:
       m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,

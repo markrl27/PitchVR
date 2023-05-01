@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
+using Unity.Mathematics;
 
 public class SoundWaveScript : MonoBehaviour
 { 
@@ -15,7 +16,10 @@ public class SoundWaveScript : MonoBehaviour
     public Material materialOriginal;
     public Material materialNew;
     private EnvironmentScript environmentScript;
-    public MicInput micInput;
+     MicInput micInput;
+    float scale, minScale, maxScale;
+
+    public ParticleSystem pSystem;
 
     void Start()
     {
@@ -23,15 +27,30 @@ public class SoundWaveScript : MonoBehaviour
         timer = resetTime;
 
         micInput = FindObjectOfType<MicInput>();
+
+        minScale = 0f;
+        maxScale = 120;
+        scale = 10;
     }
 
     void Update()
     {
-        Vector3 vectorMesh = transform.localScale;
-        float growing = speed * Time.deltaTime;
-        transform.localScale = new Vector3(vectorMesh.x + growing, vectorMesh.y + growing, vectorMesh.z + growing);
+        //Vector3 vectorMesh = transform.localScale;
+        //float growing = speed * Time.deltaTime;
+        //transform.localScale = new Vector3(vectorMesh.x + growing, vectorMesh.y + growing, vectorMesh.z + growing);
 
-        timer -= Time.deltaTime;
+        //timer -= Time.deltaTime;
+
+        if (scale > 2 && pSystem.isPlaying == false)
+        {
+            pSystem.Play();
+        }
+        
+        if(scale <= 2 && pSystem.isPlaying == true)
+        {
+            pSystem.Stop();
+        }
+
 
         if (timer <= 0)
         {
@@ -42,6 +61,35 @@ public class SoundWaveScript : MonoBehaviour
 
             Destroy(gameObject, 0.1f);
         }
+
+        if(scale >= minScale && scale <= maxScale)
+        {
+            float diff;
+            if (MicInput.MicLoudnessinDecibels >= -160 && MicInput.MicLoudnessinDecibels <= -10)
+            {
+                diff = math.remap(-160f, -10f, -20f, 50f, MicInput.MicLoudnessinDecibels);
+            }
+            else
+            {
+                diff = 0;
+                
+            }
+
+                scale += diff * Time.deltaTime;
+        }
+        else
+        {
+            scale = minScale;
+        }
+
+
+        if(scale < (minScale + 0.1))
+        {
+            scale = minScale;
+        }
+
+        transform.localScale = new Vector3(scale, scale, scale);
+
     }
 
 
@@ -53,22 +101,12 @@ public class SoundWaveScript : MonoBehaviour
             environmentScript = other.GetComponent<EnvironmentScript>();
             if (environmentScript.lvlComplete == false)
             {
-                //materialOriginal = other.GetComponent<MeshRenderer>().material;
                 other.GetComponent<MeshRenderer>().material = materialNew;
-
-                
             }
             environmentScript.PlayParticles();
 
         }
-
-        if(other.GetComponent<VisualEffect>() != null)
-        {
-            //other.GetComponent<VisualEffect>().SetFloat("Rate", 5000);
-        }
-        
     }
-
 
     public void OnTriggerExit(Collider other)
     {
@@ -78,18 +116,10 @@ public class SoundWaveScript : MonoBehaviour
             if(environmentScript.lvlComplete == false)
             {
                 other.GetComponent<MeshRenderer>().material = materialOriginal;
-
-                
             }
             environmentScript.StopParticles();
 
         }
-
-        if (other.GetComponent<VisualEffect>() != null)
-        {
-            //other.GetComponent<VisualEffect>().SetFloat("Rate", 0);
-        }
-
     }
 
 

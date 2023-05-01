@@ -19,8 +19,8 @@ public class WalkInPlaceLocomotion : MonoBehaviour
         SetPreviousPos();
     }
 
-    // Update is called once per frame
-    void Update()
+
+    void Update() // Adapted from Tara Collingwoode tutorial supplied within lab time.
     {
         //Calculate the velocity of the player hand movement 
         Vector3 leftHandVelocity = leftHand.transform.position - previousPosLeft;

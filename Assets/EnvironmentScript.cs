@@ -10,6 +10,7 @@ public class EnvironmentScript : MonoBehaviour
     private VisualEffect visualEffect;
     float loudness, newXscale;
     public bool lvlComplete = false;
+    float minScale, maxScale;
 
 
     ParticleSystem system;
@@ -28,6 +29,9 @@ public class EnvironmentScript : MonoBehaviour
             visualEffect = GetComponent<VisualEffect>();
         }
 
+        minScale = 0.005f;
+        maxScale = 2.5f;
+        newXscale = 1;
     }
 
     // Update is called once per frame
@@ -35,8 +39,28 @@ public class EnvironmentScript : MonoBehaviour
     {
         if (visualEffect != null)
         {
-            loudness = MicInput.MicLoudnessinDecibels;
-            newXscale = math.remap( -200.0f, -30.0f, 0.1f, 2.0f, loudness);
+            if (newXscale >= minScale && newXscale <= maxScale)
+            {
+                float diff;
+                if (MicInput.MicLoudnessinDecibels >= -160 && MicInput.MicLoudnessinDecibels <= -10)
+                {
+                    diff = math.remap(-160.0f, -10.0f, -0.2f, 0.4f, MicInput.MicLoudnessinDecibels);
+                }
+                else
+                {
+                    diff = 0;
+                }
+                
+                newXscale += diff * Time.deltaTime;
+            }
+            else
+                newXscale = minScale;
+
+            if(newXscale < 0.01f)
+            {
+                newXscale = minScale;
+            }
+
             visualEffect.SetFloat("ScaleX", newXscale);
         }
 

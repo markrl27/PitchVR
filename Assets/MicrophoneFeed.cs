@@ -81,14 +81,13 @@ public class MicrophoneFeed : MonoBehaviour
             currentUpdateTime = 0f;
 
             if(useMicrophone)
-            source.clip.GetData(clipSampleData, source.timeSamples); //I read 1024 samples, w$$anonymous$$ch is about 80 ms on a 44khz stereo clip, beginning at the current sample position of the clip.
-            
+            source.clip.GetData(clipSampleData, source.timeSamples); 
             clipLoudness = 0f;
             foreach (var sample in clipSampleData)
             {
                 clipLoudness += Mathf.Abs(sample);
             }
-            clipLoudness /= sampleDataLength; //clipLoudness is what you are looking for
+            clipLoudness /= sampleDataLength; 
         }
         //Debug.Log(clipLoudness.ToString());
 
@@ -107,7 +106,6 @@ public class MicrophoneFeed : MonoBehaviour
 
         useMicrophone = !useMicrophone;
         
-
         if (EchoScript.isInTrigger)
         {
             if (useMicrophone)
@@ -122,7 +120,6 @@ public class MicrophoneFeed : MonoBehaviour
         }
         pitchDetector.note = "";
         yield return new WaitForSeconds(1f);
-        pitchDetector.note = "";
         pitchDetector.isDetecting = !pitchDetector.isDetecting;
 
     }

@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: StealthMaterial
+  m_Name: StealthMaterial Indigo
   m_Shader: {fileID: -6465566751694194690, guid: 0e3194c5362366d45a79aca4f1fc058f, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -47,9 +47,9 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Fresnel_Power: 0.2
+    - _Fresnel_Power: 0.3
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - _Base_Color: {r: 0.5684086, g: 0.78830385, b: 0.7924528, a: 1}
+    - _Base_Color: {r: 0.3137255, g: 0, b: 4, a: 1}
   m_BuildTextureStacks: []

@@ -19,6 +19,9 @@ public class EchoScript : MonoBehaviour
     EnvironmentScript environmentScript;
 
     ParticleSystem system;
+    private ParticleSystemForceField thisForcefield;
+    public ParticleSystemForceField nextForcefield;
+    public Material darkMat;
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +33,7 @@ public class EchoScript : MonoBehaviour
         clip = source.clip;
 
         system = GetComponent<ParticleSystem>();
+        thisForcefield = GetComponent<ParticleSystemForceField>();
 
 
         foreach (Transform child in affectedEnvironment.transform)
@@ -55,7 +59,6 @@ public class EchoScript : MonoBehaviour
             timer -= Time.deltaTime;
         }
 
-
         if(timer <= 0)
         {
             source.Play();
@@ -73,8 +76,6 @@ public class EchoScript : MonoBehaviour
                 system.Stop();
         }
 
-
-
     }
 
 
@@ -90,7 +91,6 @@ public class EchoScript : MonoBehaviour
             {
                 PauseClip();
             }
-
 
             if (gameObject.CompareTag("Echo1"))
             {
@@ -108,7 +108,6 @@ public class EchoScript : MonoBehaviour
             {
                 pitchDetector.SetTestEcho();
             }
-
         }
 
 
@@ -146,8 +145,12 @@ public class EchoScript : MonoBehaviour
         foreach (Transform child in affectedEnvironment.transform)
         {
             //child.GetComponent<MeshRenderer>().material = newMaterial;
-            //environmentScript = child.GetComponent<EnvironmentScript>();
-            //environmentScript.lvlComplete = true;
+            environmentScript = child.GetComponent<EnvironmentScript>();
+            if(environmentScript != null)
+            {
+                environmentScript.lvlComplete = true;
+                environmentScript.GetComponent<MeshRenderer>().material = darkMat;
+            }
 
             if(child.GetComponent<VisualEffect>() != null)
             {
@@ -157,6 +160,12 @@ public class EchoScript : MonoBehaviour
         }
         PauseClip();
         ExitTrigger();
+
+        if (thisForcefield != null)
+            thisForcefield.enabled = false;
+        if (nextForcefield != null)
+            nextForcefield.enabled = true;
+
 
         Destroy(this);
         Destroy(gameObject);

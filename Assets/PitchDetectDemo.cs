@@ -4,7 +4,7 @@ using System.Collections;
 using System.Runtime.InteropServices;
 using TMPro;
 
-public class PitchDetectDemo : MonoBehaviour
+public class PitchDetectDemo : MonoBehaviour  
 {
     [DllImport("AudioPluginDemo")]
     private static extern float PitchDetectorGetFreq(int index);
@@ -100,9 +100,6 @@ public class PitchDetectDemo : MonoBehaviour
         float freq = PitchDetectorGetFreq(0), deviation = 0.0f;
         frequency = freq.ToString() + " Hz";
 
-        //Debug.Log(isDetecting);
-        //Debug.Log(EchoScript.isInTrigger);
-
         if (freq > 0.0f && MicrophoneFeed.clipLoudness > 0.01 && isDetecting)//&& EchoScript.isInTrigger
         {
             float noteval = 57.0f + 12.0f * Mathf.Log10(freq / 440.0f) / Mathf.Log10(2.0f);
@@ -118,15 +115,20 @@ public class PitchDetectDemo : MonoBehaviour
         {
             freq = 0;
             frequency = "0";
-            note = "unknown";
+            note = "Note unknown";
                
         }
 
         if (pitchText != null)
             pitchText.text = "Detected frequency: " + frequency + "\nDetected note: " + note + " (deviation: " + deviation + " cents)";
 
-       
-           
+
+        if (isDetecting)
+        {
+            checkerText.text = note;
+        }
+        else
+            checkerText.text = "";
 
             
         if (source.isPlaying == false)

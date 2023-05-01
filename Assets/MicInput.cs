@@ -131,6 +131,10 @@ public class MicInput : MonoBehaviour     // script adapted from: https://forum.
         // pass the value to a static var so we can access it from anywhere
         MicLoudness = MicrophoneLevelMax();
         MicLoudnessinDecibels = MicrophoneLevelMaxDecibels();
+        if(MicLoudnessinDecibels < -160)
+        {
+            MicLoudnessinDecibels = -160;
+        }
 
         loudnessText.text = MicLoudnessinDecibels + " Dbs";
 
@@ -144,15 +148,15 @@ public class MicInput : MonoBehaviour     // script adapted from: https://forum.
 
         if(MicLoudnessinDecibels < -100 && maxVolume > -50 && !activeSoundwave && !MicrophoneFeed.useMicrophone)
         {
-            GameObject spawnedSphere = Instantiate(scannerSphere, spawnLocation);
+            //GameObject spawnedSphere = Instantiate(scannerSphere, spawnLocation);
             //soundWaveScript = spawnedSphere.GetComponent<SoundWaveScript>();
             //newSpeed = math.remap(maxVolume, -50f, -10f, 2.0f, 0.2f);
             //soundWaveScript.SetSpeed(newSpeed);
             //newTimer = math.remap(MicLoudnessinDecibels, -60f, -10f, 2.0f, 6f);
             //soundWaveScript.SetTimer(newTimer);
 
-            activeSoundwave = true;
-            maxVolume = -200;
+           // activeSoundwave = true;
+           // maxVolume = -200;
         }
 
     }

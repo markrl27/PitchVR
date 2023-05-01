@@ -52,7 +52,6 @@ public class InputCapture : MonoBehaviour
         StartCoroutine(ToggleCoroutine());
     }
 
-
     public IEnumerator ToggleCoroutine()
     {
         yield return new WaitForSeconds(.2f);
@@ -71,7 +70,5 @@ public class InputCapture : MonoBehaviour
         Debug.Log(walkInPlace.enabled);
 
     }
-
-
 }
 
